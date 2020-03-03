@@ -41,7 +41,7 @@ class ExtendedToken {
 
         @Override
         public String toString() {
-            return lhs.toString() + " = " + rhs.toString();
+            return lhs + " = " + rhs;
         }
     }
 
