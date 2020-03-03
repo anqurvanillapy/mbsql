@@ -16,3 +16,4 @@ ALL : ;
 FROM : ;
 WHERE : ;
 EQ : ;
+STRING_LITERAL : ;

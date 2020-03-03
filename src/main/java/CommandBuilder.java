@@ -44,9 +44,25 @@ class ExtendedToken {
             return lhs.toString() + " = " + rhs.toString();
         }
     }
+
+    @EqualsAndHashCode(callSuper = true)
+    @Value
+    static class StrLit extends CommonToken {
+        String value;
+
+        public StrLit(String value) {
+            super(MbSqlParser.STRING_LITERAL);
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "\"" + value + "\"";
+        }
+    }
 }
 
-public class CommandBuilder extends MbSqlBaseListener {
+class CommandBuilder extends MbSqlBaseListener {
     private final StringBuilder commandText = new StringBuilder();
 
     String create(TokenSource tokenSource) {
@@ -78,5 +94,7 @@ public class CommandBuilder extends MbSqlBaseListener {
             commandText.append(" where ");
             commandText.append(ctx.EQ().getSymbol());
         }
+
+        commandText.append(';');
     }
 }
