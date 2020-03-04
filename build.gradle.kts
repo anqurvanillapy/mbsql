@@ -20,3 +20,13 @@ dependencies {
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_11
 }
+
+tasks.withType<JavaCompile> {
+    options.compilerArgs = listOf(
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+
+            "--add-exports",
+            "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+    )
+}

@@ -1,5 +1,9 @@
 grammar MbSql;
 
+@header {
+package io.anqur.mbsql;
+}
+
 query : EOF
       | simpleStmt EOF
       ;

@@ -1,3 +1,5 @@
+package io.anqur.mbsql;
+
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.antlr.v4.runtime.CommonToken;
@@ -11,8 +13,7 @@ import org.jetbrains.annotations.NotNull;
 class ExtendedToken {
     @EqualsAndHashCode(callSuper = true)
     @Value
-    static
-    class ID extends CommonToken {
+    static class ID extends CommonToken {
         String value;
 
         public ID(String value) {
@@ -28,8 +29,7 @@ class ExtendedToken {
 
     @EqualsAndHashCode(callSuper = true)
     @Value
-    static
-    class EQ extends CommonToken {
+    static class EQ extends CommonToken {
         CommonToken lhs;
         CommonToken rhs;
 
@@ -75,7 +75,7 @@ class CommandBuilder extends MbSqlBaseListener {
 
     @Override
     public void enterSelectStmt(@NotNull MbSqlParser.SelectStmtContext ctx) {
-        commandText.append(" select ");
+        commandText.append(" SELECT ");
 
         TerminalNode colName = ctx.ID(0);
         if (colName != null) {
@@ -84,14 +84,14 @@ class CommandBuilder extends MbSqlBaseListener {
             commandText.append('*');
         }
 
-        commandText.append(" from ");
+        commandText.append(" FROM ");
 
         TerminalNode tableName = ctx.ID(1);
         commandText.append(tableName.getSymbol());
 
         TerminalNode where = ctx.WHERE();
         if (where != null) {
-            commandText.append(" where ");
+            commandText.append(" WHERE ");
             commandText.append(ctx.EQ().getSymbol());
         }
 
