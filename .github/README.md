@@ -39,6 +39,13 @@ public class Main {
 }
 ```
 
+Via:
+
+```bash
+$ javac -cp /path/to/mbsql.jar -Xplugin:MbSql Main.java
+$ java -cp /path/to/mbsql.jar:. Main
+```
+
 ## License
 
 MIT
