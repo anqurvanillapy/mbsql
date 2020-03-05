@@ -92,7 +92,16 @@ class CommandBuilder extends MbSqlBaseListener {
         TerminalNode where = ctx.WHERE();
         if (where != null) {
             commandText.append(" WHERE ");
-            commandText.append(ctx.EQ().getSymbol());
+
+            ExtendedToken.EQ eqOp1 = (ExtendedToken.EQ) ctx.EQ(0).getSymbol();
+            commandText.append(eqOp1.getLhs()).append("=")
+                    .append(eqOp1.getRhs());
+
+            commandText.append(" AND ");
+
+            ExtendedToken.EQ eqOp2 = (ExtendedToken.EQ) ctx.EQ(1).getSymbol();
+            commandText.append(eqOp2.getLhs()).append("=")
+                    .append(eqOp2.getRhs());
         }
 
         commandText.append(';');

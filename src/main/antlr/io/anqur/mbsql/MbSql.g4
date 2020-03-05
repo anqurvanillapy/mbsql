@@ -11,7 +11,7 @@ query : EOF
 simpleStmt : selectStmt
            ;
 
-selectStmt : SELECT (ID | ALL) FROM ID (WHERE EQ)
+selectStmt : SELECT (ID | ALL) FROM ID (WHERE EQ AND EQ)
            ;
 
 SELECT : ;
@@ -21,3 +21,4 @@ FROM : ;
 WHERE : ;
 EQ : ;
 STRING_LITERAL : ;
+AND : ;
